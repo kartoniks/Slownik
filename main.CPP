@@ -87,7 +87,7 @@ void powtarzaj(vector<node> &v)
     {
         r=rand();
         r%=v.size();
-        int d=rand()%2;
+        int d=rand()%2; 
         if(d==0)
         {
             cout<<"Podaj definicje slowa: "<<v[r].slo<<"\n";
