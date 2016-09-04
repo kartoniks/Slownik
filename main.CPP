@@ -126,6 +126,7 @@ void powtarzaj(vector<node> &v)
 
 int main()
 {
+    srand(time(NULL));
     int z;
     vector<node> v;
     v.resize(0);
@@ -154,8 +155,6 @@ int main()
         }
         system("cls");
     }
-
-
-
     return 0;
 }
+
