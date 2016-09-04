@@ -5,6 +5,7 @@
 #include<vector>
 #include<algorithm>
 #include<queue>
+#include<time.h>
 using namespace std;
 struct node
 {
@@ -77,14 +78,15 @@ void zapisz(vector<node> &v)
 void powtarzaj(vector<node> &v)
 {
     cout<<"Ile slow chcesz powtarzac?\n";
-    int n;
+    int n,vsize;
+    vsize=v.size();
     cin>>n;
-    double r;
+    n=min(vsize,n);
+    int r;
     for(int i=0; i<n; i++)
     {
         r=rand();
-        r/=RAND_MAX;
-        r*=v.size();
+        r%=v.size();
         int d=rand()%2;
         if(d==0)
         {
@@ -118,8 +120,8 @@ void powtarzaj(vector<node> &v)
                 v[r].tru=min(9,v[r].tru+1);
             }
         }
-        }
-
+    }
+    Sleep(2000);
     }
 
 int main()
@@ -157,4 +159,3 @@ int main()
 
     return 0;
 }
-
