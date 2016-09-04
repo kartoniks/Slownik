@@ -7,6 +7,24 @@
 #include<queue>
 #include<time.h>
 using namespace std;
+
+void sprawdz(string a, string b, int &t)
+{
+    cout<<"Podaj tlumaczenie: "<<a<<"\n";
+    string nowyw;
+    cin>>nowyw;
+    if(nowyw==b)
+    {
+        cout<<"Dobrze!\n";
+        t=max(t-1,0);
+    }
+    else
+    {
+        cout<<"Zle! Wlasciwe tlumaczenie to: "<<b<<"\n";
+        t=min(t+1,9);
+    }
+}
+
 struct node
 {
     string slo;
@@ -14,7 +32,7 @@ struct node
     int tru=1;
     bool operator < (const node &x)const
       {
-        if(tru<x.tru)
+        if(tru>x.tru)
             return true;
         else
             return false;
@@ -87,42 +105,30 @@ void powtarzaj(vector<node> &v)
     {
         r=rand();
         r%=v.size();
-        int d=rand()%2; 
+        int d=rand()%2;
         if(d==0)
-        {
-            cout<<"Podaj definicje slowa: "<<v[r].slo<<"\n";
-            string d;
-            cin>>d;
-            if(d==v[r].def)
-            {
-                cout<<"Dobrze!\n";
-                v[r].tru=max(0,v[r].tru-1);
-            }
-            else
-            {
-                cout<<"Zle! Wlasciwa definicja to: "<<v[r].def<<"\n";
-                v[r].tru=min(9,v[r].tru+1);
-            }
-        }
+            sprawdz(v[r].def, v[r].slo, v[r].tru);
         else
-        {
-            cout<<"Jakie to slowo: "<<v[r].def<<"\n";
-            string d;
-            cin>>d;
-            if(d==v[r].slo)
-            {
-                cout<<"Dobrze!\n";
-                v[r].tru=max(0,v[r].tru-1);
-            }
-            else
-            {
-                cout<<"Zle! Wlasciwe slowo to: "<<v[r].slo<<"\n";
-                v[r].tru=min(9,v[r].tru+1);
-            }
-        }
+            sprawdz(v[r].slo, v[r].def, v[r].tru);
     }
     Sleep(2000);
     }
+void ucz(vector<node> &v)
+{
+    int s=v.size();
+    if(s>0)
+    {
+        for(int i=0; i<min(s,5); i++)
+        {
+            int r=rand()%2;
+            if(r==0)
+                sprawdz(v[i].def, v[i].slo, v[i].tru);
+            else
+                sprawdz(v[i].slo, v[i].def, v[i].tru);
+        }
+        Sleep(2000);
+    }
+}
 
 int main()
 {
@@ -135,7 +141,7 @@ int main()
   //          cout<<v[i].slo<<" "<<v[i].def<<" "<<v[i].tru<<"\n";
     while(true)
     {
-        cout<<"1.Dodaj nowe slowo\n2.Zamknij\n3.Powtarzaj slowka\n";
+        cout<<"1.Dodaj nowe slowo\n2.Zamknij\n3.Powtarzaj losowo\n4.Trudne slowka\n";
         z=getchar();
         z-=48;
         switch(z)
@@ -151,6 +157,9 @@ int main()
             break;
         case 3:
             powtarzaj(v);
+            break;
+        case 4:
+            ucz(v);
             break;
         }
         system("cls");
