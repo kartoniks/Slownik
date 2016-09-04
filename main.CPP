@@ -43,7 +43,7 @@ void dodaj(vector<node> &v)
     v.resize(v.size()+1);
     cout<<"Podaj slowo:\n";
     cin>>v[v.size()-1].slo;
-    cout<<"Podaj definicje:\n";
+    cout<<"Podaj tlumaczenie:\n";
     cin>>v[v.size()-1].def;
 }
 void otworz(vector<node> &v)
