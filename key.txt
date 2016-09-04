@@ -1,0 +1,4 @@
+kot cat 0
+pies dog 0
+sluchawki headphones 0
+gruzlica turbeculosis 1
